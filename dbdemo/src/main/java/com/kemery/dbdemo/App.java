@@ -2,6 +2,7 @@ package com.kemery.dbdemo;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 /**
  * Hello world!
@@ -10,9 +11,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App 
 {
     public static void main( String[] args )
-    {
-    	
-    	ApplicationContext context = new ClassPathXmlApplicationContext("com/kemery/dbdemo/beans/beans.xml");
+    {    	
+    //	ApplicationContext context = new ClassPathXmlApplicationContext("com/kemery/dbdemo/dbbean.xml");
+    	ApplicationContext context = new FileSystemXmlApplicationContext("dbbean.xml");
     	
         System.out.println( "Hello DB World!" );
         
