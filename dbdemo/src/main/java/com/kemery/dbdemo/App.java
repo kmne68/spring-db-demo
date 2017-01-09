@@ -21,7 +21,7 @@ public class App
         
         robot.speak();
         
-        ((ClassPathXmlApplicationContext)context).close();
+        ((FileSystemXmlApplicationContext)context).close();
     //    robot.setId(id);
      //   robot.setSpeech();
     }
