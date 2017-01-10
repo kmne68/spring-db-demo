@@ -11,18 +11,22 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 public class App 
 {
     public static void main( String[] args )
-    {    	
-    //	ApplicationContext context = new ClassPathXmlApplicationContext("com/kemery/dbdemo/dbbean.xml");
-    	ApplicationContext context = new FileSystemXmlApplicationContext("dbbean.xml");
+    {   
+    	
+    //	ApplicationContext context = new ClassPathXmlApplicationContext("/dbdemo/src/main/java/com/kemery/dbdemo/dbbean.xml");
+    	ApplicationContext context = new FileSystemXmlApplicationContext("beans.xml");
     	
         System.out.println( "Hello DB World!" );
         
         Robot robot = (Robot)context.getBean("robot");
-        
         robot.speak();
+
+     //   Person person = new Person();
+        Person person = (Person)context.getBean("person");
+        person.speak();
         
         ((FileSystemXmlApplicationContext)context).close();
-    //    robot.setId(id);
+     //   robot.setId(id);
      //   robot.setSpeech();
     }
 }

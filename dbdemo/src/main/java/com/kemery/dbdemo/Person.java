@@ -3,7 +3,7 @@ package com.kemery.dbdemo;
 public class Person {
 
 	public void speak() {
-		System.out.println("Hello world!");
+		System.out.println("Hello world! I am a person.");
 	}
 	
 }

@@ -14,7 +14,7 @@ public class Robot {
 		
 		System.out.println(id + ": " + speech);
 	}
-	/*
+	
 	//@Autowired @Value("jdbc.user")
 	public void setId( String id) {
 		
@@ -26,5 +26,5 @@ public class Robot {
 	public void setSpeech( String speech) {
 		
 		this.speech = speech;
-	} */
+	}
 }
