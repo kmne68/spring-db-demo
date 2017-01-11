@@ -15,15 +15,15 @@ public class Robot {
 		System.out.println(id + ": " + speech);
 	}
 	
-	//@Autowired @Value("jdbc.user")
-	public void setId( String id) {
+	//@Autowired  
+	public void setId(@Value("${jdbc.user}") String id) {
 		
 		this.id = id;
 	}
 	
 	
-	//@Autowired @Value("jdbc.password")
-	public void setSpeech( String speech) {
+	//@Autowired 
+	public void setSpeech(@Value("${jdbc.password}")  String speech) {
 		
 		this.speech = speech;
 	}

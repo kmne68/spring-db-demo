@@ -5,17 +5,17 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
-	<!--context:component-scan base-package="com.kemery.dbdemo"></context:component-scan>
+	<context:component-scan base-package="com.kemery.dbdemo">
+	</context:component-scan>
 
 
 
-	<context:property-placeholder
-		location="com/kemery/dbdemo/props/jdbc.properties" /-->
-
-	<bean id="robot" class="com.kemery.dbdemo.Robot">
-			<property value="${user}" name="id"></property>
-			<property value="${password}" name="speech"></property>
-		</bean>
+	<!-- bean id="robot" class="com.kemery.dbdemo.Robot">
+			<property value="${jdbc.user}" name="id"></property>
+			<property value="${jdbc.password}" name="speech"></property>
+		</bean-->
 		
 		<bean id="person" class="com.kemery.dbdemo.Person"></bean>	
+		<!-- context:property-placeholder
+			location="com/kemery/dbdemo/props/jdbc.properties" /-->
 </beans>

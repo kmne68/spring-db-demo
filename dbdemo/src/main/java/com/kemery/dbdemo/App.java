@@ -16,17 +16,19 @@ public class App
     //	ApplicationContext context = new ClassPathXmlApplicationContext("/dbdemo/src/main/java/com/kemery/dbdemo/dbbean.xml");
     	ApplicationContext context = new FileSystemXmlApplicationContext("beans.xml");
     	
-        System.out.println( "Hello DB World!" );
+   //     System.out.println( "Hello DB World!" );
         
         Robot robot = (Robot)context.getBean("robot");
         robot.speak();
-
+        robot.setId("0");
+        robot.setSpeech("Danger Will Robinson!");
+        robot.speak();
+        
      //   Person person = new Person();
         Person person = (Person)context.getBean("person");
         person.speak();
         
         ((FileSystemXmlApplicationContext)context).close();
-     //   robot.setId(id);
-     //   robot.setSpeech();
+
     }
 }
