@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 
 import model.Offer;
 import model.OffersDAO;
@@ -13,9 +15,8 @@ import model.OffersDAO;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
+public class App {
+	public static void main( String[] args )
     {   
     	
     //	ApplicationContext context = new ClassPathXmlApplicationContext("/dbdemo/src/main/java/com/kemery/dbdemo/dbbean.xml");
@@ -25,21 +26,21 @@ public class App
         
         OffersDAO offersDao = (OffersDAO)context.getBean("OffersDAO");
         
-        List<Offer> offers = offersDao.getOffers();
+        try {
+        	List<Offer> offers = offersDao.getOffers();
         
-        for(Offer offer: offers) {
-        	System.out.println(offer);
+        	for(Offer offer: offers) {
+        		System.out.println(offer);
+        	}
         }
-        
- /*       robot.speak();
-        robot.setId("0");
-        robot.setSpeech("Danger Will Robinson!");
-        robot.speak(); */
-        
-     //   Person person = new Person();
-        Person person = (Person)context.getBean("person");
-        person.speak();
-        
+        catch (CannotGetJdbcConnectionException e) {
+        	System.out.println("Cannot get database connection. Is your password correct?");
+        }
+        catch (DataAccessException e) {
+        	System.out.println(e.getMessage());
+        	System.out.println(e.getClass());
+        }
+
         ((FileSystemXmlApplicationContext)context).close();
 
     }
