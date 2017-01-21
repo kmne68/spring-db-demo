@@ -32,7 +32,11 @@ public class App {
         	for(Offer offer: offers) {
         		System.out.println(offer);
         	}
+        	
+        	Offer offer = offersDao.getOffer(2);
+        	System.out.println("Should be?" + offer);
         }
+        
         catch (CannotGetJdbcConnectionException e) {
         	System.out.println("Cannot get database connection. Is your password correct?");
         }
