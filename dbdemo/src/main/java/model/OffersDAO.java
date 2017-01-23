@@ -40,10 +40,15 @@ public class OffersDAO {
 				return offer;
 			}		
 		});
-		
-
 	}	
 	
+	
+	public int delete(int id) {
+		
+		MapSqlParameterSource params = new MapSqlParameterSource("id", id);
+		
+		return jdbc.update("DELETE FROM offers where id = :id", params);
+	}
 	
 	public Offer getOffer(int id) {
 		

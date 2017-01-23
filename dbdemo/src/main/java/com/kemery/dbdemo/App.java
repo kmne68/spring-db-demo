@@ -27,13 +27,15 @@ public class App {
         OffersDAO offersDao = (OffersDAO)context.getBean("OffersDAO");
         
         try {
+        	
+        	offersDao.delete(1);
         	List<Offer> offers = offersDao.getOffers();
         
         	for(Offer offer: offers) {
         		System.out.println(offer);
         	}
         	
-        	Offer offer = offersDao.getOffer(2);
+        	Offer offer = offersDao.getOffer(3);
         	System.out.println("Should be?" + offer);
         }
         
