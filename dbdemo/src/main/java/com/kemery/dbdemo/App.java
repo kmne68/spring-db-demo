@@ -27,8 +27,25 @@ public class App {
         OffersDAO offersDao = (OffersDAO)context.getBean("OffersDAO");
         
         try {
+      
+        	Offer offer1 = new Offer("Dave", "dave@mycom.com", "Coding fool.");      
+        	Offer offer2 = new Offer("Karen", "karen@mycom.com", "Let's do lunch.");      
+        	Offer offer3 = new Offer("Bilbo", "bilbo@mycom.com", "I need a hanky.");      
+        	Offer offer4 = new Offer("Frodo", "frodo@mycom.com", "I wish it had never come to me.");      
+        	Offer offer5 = new Offer("Merry", "merry@mycom.com", "Coding tool");
         	
-        	offersDao.delete(1);
+        	if(offersDao.create(offer1))
+        		System.out.println("Created object offer");
+        	if(offersDao.create(offer2))
+        		System.out.println("Created object offer");
+        	if(offersDao.create(offer3))
+        			System.out.println("Created object offer");
+        	if(offersDao.create(offer4))
+        			System.out.println("Created object offer");
+        	if(offersDao.create(offer5))
+        		System.out.println("Created object offer");
+        	
+    //    	offersDao.delete();
         	List<Offer> offers = offersDao.getOffers();
         
         	for(Offer offer: offers) {

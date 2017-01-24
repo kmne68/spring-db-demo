@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -22,12 +23,13 @@ public class OffersDAO {
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
+	
 
 	public List<Offer> getOffers() {
 		
-		MapSqlParameterSource params = new MapSqlParameterSource("name", "Ellen");
+	//	MapSqlParameterSource params = new MapSqlParameterSource("name", "Ellen");
 		
-		return jdbc.query("select * from offers where name = :name", params, new RowMapper<Offer>() {
+		return jdbc.query("select * from offers", new RowMapper<Offer>() {
 
 			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
 				
@@ -41,6 +43,15 @@ public class OffersDAO {
 			}		
 		});
 	}	
+	
+	
+	public boolean create(Offer offer) {
+		
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		
+		return jdbc.update("INSERT INTO offers (name, email, text) VALUES (:name, :email, :text)", params) == 1;
+				
+	}
 	
 	
 	public int delete(int id) {

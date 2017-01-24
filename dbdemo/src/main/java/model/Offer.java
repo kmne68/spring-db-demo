@@ -6,12 +6,28 @@ public class Offer {
 	private String name;
 	private String email;
 	private String text;
+	
+	public Offer() {
+		
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
+	public Offer(String name, String email, String text) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.text = text;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
