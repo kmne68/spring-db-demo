@@ -12,6 +12,15 @@ public class Offer {
 	}
 	
 	
+	public Offer(int id, String name, String email, String text) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.text = text;
+	}
+
+
 	public int getId() {
 		return id;
 	}

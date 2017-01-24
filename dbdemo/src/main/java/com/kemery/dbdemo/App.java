@@ -26,9 +26,16 @@ public class App {
         
         OffersDAO offersDao = (OffersDAO)context.getBean("OffersDAO");
         
+        Offer updateOffer = new Offer(6, "Claire", "claire@mycom.com", "Prepositions dangled while you wait");
+        
+        if(offersDao.update(updateOffer))
+        	System.out.println("Offer updated.");
+        else
+        	System.out.println("Offer cannot be updated.");
+        
         try {
       
-        	Offer offer1 = new Offer("Dave", "dave@mycom.com", "Coding fool.");      
+    /*    	Offer offer1 = new Offer("Dave", "dave@mycom.com", "Coding fool.");      
         	Offer offer2 = new Offer("Karen", "karen@mycom.com", "Let's do lunch.");      
         	Offer offer3 = new Offer("Bilbo", "bilbo@mycom.com", "I need a hanky.");      
         	Offer offer4 = new Offer("Frodo", "frodo@mycom.com", "I wish it had never come to me.");      
@@ -43,7 +50,7 @@ public class App {
         	if(offersDao.create(offer4))
         			System.out.println("Created object offer");
         	if(offersDao.create(offer5))
-        		System.out.println("Created object offer");
+        		System.out.println("Created object offer");			*/
         	
     //    	offersDao.delete();
         	List<Offer> offers = offersDao.getOffers();

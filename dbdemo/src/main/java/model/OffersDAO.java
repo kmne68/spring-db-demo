@@ -16,72 +16,77 @@ import org.springframework.stereotype.Component;
 
 @Component("offersDao")
 public class OffersDAO {
-	
+
 	private NamedParameterJdbcTemplate jdbc;
 
 	@Autowired
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
-	
 
 	public List<Offer> getOffers() {
-		
-	//	MapSqlParameterSource params = new MapSqlParameterSource("name", "Ellen");
-		
+
+		// MapSqlParameterSource params = new MapSqlParameterSource("name",
+		// "Ellen");
+
 		return jdbc.query("select * from offers", new RowMapper<Offer>() {
 
 			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-				
+
 				Offer offer = new Offer();
-				
+
 				offer.setId(rs.getInt("id"));
 				offer.setName(rs.getString("name"));
 				offer.setText(rs.getString("email"));
 				offer.setEmail(rs.getString("text"));
 				return offer;
-			}		
+			}
 		});
-	}	
-	
-	
-	public boolean create(Offer offer) {
-		
-		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
-		
-		return jdbc.update("INSERT INTO offers (name, email, text) VALUES (:name, :email, :text)", params) == 1;
-				
 	}
-	
-	
+
+	public boolean create(Offer offer) {
+
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+
+		return jdbc.update("INSERT INTO offers (name, email, text) VALUES (:name, :email, :text)", params) == 1;
+
+	}
+
 	public int delete(int id) {
-		
+
 		MapSqlParameterSource params = new MapSqlParameterSource("id", id);
-		
+
 		return jdbc.update("DELETE FROM offers where id = :id", params);
 	}
 	
+
 	public Offer getOffer(int id) {
-		
+
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("id", id);
-			
+
 		return jdbc.queryForObject("select * from offers where id = :id", params, new RowMapper<Offer>() {
-			
-			public Offer mapRow(ResultSet rs, int rowNum)
-			throws SQLException {
+
+			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Offer offer = new Offer();
-				
+
 				offer.setId(rs.getInt("id"));
 				offer.setName(rs.getString("name"));
 				offer.setText(rs.getString("text"));
 				offer.setEmail(rs.getString("email"));
-				
+
 				return offer;
 			}
-			
+
 		});
-					
-					
-		}
+
+	}
+	
+	
+	public boolean update(Offer offer) {
+		
+		BeanPropertySqlParameterSource params = new BeanPropertySqlParameterSource(offer);
+		
+		return jdbc.update("UPDATE offers SET name = :name, email = :email, text = :text WHERE id = :id", params) == 1;
+	}
 }
