@@ -1,5 +1,6 @@
 package com.kemery.dbdemo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.context.ApplicationContext;
@@ -34,6 +35,21 @@ public class App {
         	System.out.println("Offer cannot be updated.");
         
         try {
+        	
+        	List<Offer> offersList = new ArrayList<Offer>();
+        	
+        	offersList.add(new Offer("Fili", "fili@lonelymountain.com", "Mind your miners."));
+        	offersList.add(new Offer("Fili", "kili@lonelymountain.com", "Ima dwarf."));
+        	offersList.add(new Offer("Bombur", "bombur@lonelymountain.com", "I'll crush you like a bug."));
+        	offersList.add(new Offer("Thorin", "thorin@kingundermountain.com", "It's good to be king!"));
+        	
+        	int[] arrayValues = offersDao.create(offersList);
+        	
+        	for(int value: arrayValues) {
+        		
+        		System.out.println("Updated " + value + " rows.");
+        	}
+        		
       
     /*    	Offer offer1 = new Offer("Dave", "dave@mycom.com", "Coding fool.");      
         	Offer offer2 = new Offer("Karen", "karen@mycom.com", "Let's do lunch.");      
