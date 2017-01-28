@@ -38,10 +38,8 @@ public class App {
         	
         	List<Offer> offersList = new ArrayList<Offer>();
         	
-        	offersList.add(new Offer("Fili", "fili@lonelymountain.com", "Mind your miners."));
-        	offersList.add(new Offer("Fili", "kili@lonelymountain.com", "Ima dwarf."));
-        	offersList.add(new Offer("Bombur", "bombur@lonelymountain.com", "I'll crush you like a bug."));
-        	offersList.add(new Offer("Thorin", "thorin@kingundermountain.com", "It's good to be king!"));
+        	offersList.add(new Offer(1, "Bifur", "bifur@lonelymountain.com", "I'm a minor."));
+        	offersList.add(new Offer(22, "Oin", "oin@lonelymountain.com", "I'm the tall one."));
         	
         	int[] arrayValues = offersDao.create(offersList);
         	

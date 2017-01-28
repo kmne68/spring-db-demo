@@ -2,22 +2,25 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<context:component-scan base-package="com.kemery.dbdemo">
 	</context:component-scan>
-	
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-<property name="location" value="classpath:com/kemery/dbdemo/props/jdbc.properties"></property>
-</bean>
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"
+			value="classpath:com/kemery/dbdemo/props/jdbc.properties"></property>
+	</bean>
 
 	<!-- bean id="robot" class="com.kemery.dbdemo.Robot"> <property value="${jdbc.user}" 
 		name="id"></property> <property value="${jdbc.password}" name="speech"></property> 
-		</bean> <bean id="person" class="com.kemery.dbdemo.Person"></bean> >
-		
-	<context:property-placeholder location="com/kemery/dbdemo/props/jdbc.properties"/-->
-	
+		</bean> <bean id="person" class="com.kemery.dbdemo.Person"></bean> > <context:property-placeholder 
+		location="com/kemery/dbdemo/props/jdbc.properties"/ -->
+
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
@@ -26,4 +29,9 @@
 		<property name="username" value="${jdbc.username}"></property>
 	</bean>
 	<bean id="OffersDAO" name="OffersDAO" class="model.OffersDAO"></bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<tx:annotation-driven />
 </beans>

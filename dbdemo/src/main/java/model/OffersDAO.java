@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component("offersDao")
 public class OffersDAO {
@@ -55,11 +56,12 @@ public class OffersDAO {
 	}
 	
 	
+	// @Transactional The transactional annotation adds an all or none property to the method
 	public int[] create(List<Offer> offers) {
 		
 		SqlParameterSource[] params = SqlParameterSourceUtils.createBatch(offers.toArray());
 		
-		return jdbc.batchUpdate("INSERT INTO offers (name, email, text) VALUES (:name, :email, :text)", params);
+		return jdbc.batchUpdate("INSERT INTO offers (id, name, email, text) VALUES (:id, :name, :email, :text)", params);
 		
 	}
 	
