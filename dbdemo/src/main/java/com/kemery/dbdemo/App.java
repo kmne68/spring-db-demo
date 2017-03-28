@@ -39,7 +39,7 @@ public class App {
         	List<Offer> offersList = new ArrayList<Offer>();
         	
         	offersList.add(new Offer(1, "Bifur", "bifur@lonelymountain.com", "I'm a minor."));
-        	offersList.add(new Offer(22, "Oin", "oin@lonelymountain.com", "I'm the tall one."));
+        	offersList.add(new Offer(24, "Gloin", "gloin@lonelymountain.com", "Wanna see a picture of my kid?"));
         	
         	int[] arrayValues = offersDao.create(offersList);
         	
